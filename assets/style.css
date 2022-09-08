@@ -1,0 +1,39 @@
+header {
+    font-family: ubuntu;
+    display: list-item;
+}
+
+header div.title {
+    height: 50px;
+    font-size: 3em;
+    color: black;
+    margin: 20px 20px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    background-color: gray;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: block;
+}
+
+header nav ul:first-child {
+    padding-inline-start: 20px;
+}
+
+header li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    line-height: 3em;
+    padding-inline: 1em;
+}
+
+header li a:hover {
+    background-color: darkgray;
+}
