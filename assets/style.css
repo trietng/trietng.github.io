@@ -11,7 +11,6 @@ body {
 header div.title {
     height: 50px;
     margin: 20px 20px;
-    overflow: hidden;
 }
 
 header div.title a {
