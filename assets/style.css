@@ -50,3 +50,24 @@ body {
 .navbar li a:hover {
     background-color: darkseagreen;
 }
+
+@media (pointer: coarse) and (hover: none) {
+    .title {
+        margin-block-end: 35px;
+    }
+    .title a {
+        font-size: 2em;
+    }
+    .navbar li {
+        display: block;
+    }
+    .navbar li a {
+        padding-inline: 1.2em;
+    }
+    .navbar ul {
+        flex-direction: column;
+    }
+    .navbar ul:first-child {
+        padding-inline-start: 0;
+    }
+}
