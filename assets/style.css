@@ -1,19 +1,33 @@
-header {
+* {
+    box-sizing: border-box;
     font-family: ubuntu;
-    display: list-item;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 header div.title {
     height: 50px;
+    margin: 20px 20px;
+    overflow: hidden;
+}
+
+header div.title a {
+    display: block;
+    text-decoration: none;
     font-size: 3em;
     color: black;
-    margin: 20px 20px;
+}
+
+header nav {
+    background-color: seagreen;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
-    background-color: gray;
     margin: 0;
     padding: 0;
 }
@@ -35,5 +49,5 @@ header li a {
 }
 
 header li a:hover {
-    background-color: darkgray;
+    background-color: darkseagreen;
 }
