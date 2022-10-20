@@ -1,0 +1,11 @@
+.nav-item:hover {
+    background-color: white;
+}
+
+.nav-link {
+    padding-block: 1rem;
+}
+
+.text-seagreen, .nav-link:hover {
+    color: seagreen;
+}

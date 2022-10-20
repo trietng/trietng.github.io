@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>trietng</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>trietng</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="title"><a href="index.html">trietng's personal GitHub page</a></div>
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="minigame.html">Minigame</a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        
-    </main>
-    <footer>
-        
-    </footer>
+  <header style="background-color: seagreen">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient sticky-top p-0">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">trietng</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse home-menu px">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Minesweeper</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle= "dropdown" aria-haspopup="true" aria-expanded="false" id="contact">
+                Contact
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item">Email</a></li>
+                <li><a class="dropdown-item">Facebook</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item">F2F</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!--
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          -->
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    
+  </main>
+  <script src="js/animation.js"></script>
 </body>
 </html>
