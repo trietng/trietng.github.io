@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'trietng.github.io',
+  displayName: 'portfolio',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/trietng.github.io',
+  coverageDirectory: '../../coverage/apps/portfolio',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
