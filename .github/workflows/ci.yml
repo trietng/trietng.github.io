@@ -9,9 +9,13 @@ on:
 permissions:
   actions: read
   contents: read
+  id-token: write
 
 jobs:
-  main:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,12 +39,18 @@ jobs:
       # - run: npx nx-cloud record -- echo Hello World
       # - run: npx nx affected -t lint test build
 
-      # Build
-      - run: npx nx build portfolio
+      - name: Build
+        run: npx nx build portfolio
 
-      # Set serving directory
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist folder
           path: 'dist/apps/portfolio/browser'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
