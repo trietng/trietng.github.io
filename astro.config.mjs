@@ -7,5 +7,14 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://trietng.github.io',
   output: 'static',
-  integrations: [tailwind(), react()]
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "vi"],
+  },
+  integrations: [
+    tailwind(),
+    react({
+      experimentalReactChildren: true,
+    })
+  ]
 });

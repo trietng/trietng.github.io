@@ -1,10 +1,23 @@
 import { useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
 import CMS from 'decap-cms-app';
+import jsYaml from 'js-yaml';
 
 export default function DecapInitializer() {
+    async function localConfig() {
+        const response = await fetch('/admin/config.yml');
+        const data = await response.text();
+        const config: any = jsYaml.load(data);
+        CMS.init({ config: config });
+    }
+    
     useEffect(() => {
-        CMS.init();
+        if (import.meta.env.DEV) {
+            localConfig();
+        }
+        else {
+            CMS.init();
+        }
     }, []);
+
     return null;
 }

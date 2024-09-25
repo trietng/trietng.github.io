@@ -1,0 +1,20 @@
+---
+import Logo from "./Logo";
+
+const year = new Date().getFullYear();
+---
+<footer class="pb-16">
+    <div class="max-w-7xl mx-4 sm:mx-6 md:mx-8 border-t pt-4 border-t-amber-900 dark:border-t-slate-50/10">
+        <Logo />
+        <div class="mt-4 text-sm">
+            <p>Copyright &copy; trietng {year}</p>
+            <p>Powered by</p>
+            <div class="md:inline-flex">
+                <a class="inline-block mr-2 h-8 w-24 dark:bg-[url('/logo/astro/astro-logo-light-gradient.svg')] bg-[url('/logo/astro/astro-logo-dark.svg')] bg-contain" href="https://astro.build"></a>
+                <a class="inline-block mr-2 h-8 w-[106px] dark:bg-[url('/logo/react/wordmark_dark.svg')] bg-[url('/logo/react/wordmark_light.svg')] bg-contain" href="https://react.dev"></a>
+                <a class="inline-block h-8 w-[254px] dark:bg-[url('/logo/tailwindcss/tailwindcss-logotype-white.svg')] bg-[url('/logo/tailwindcss/tailwindcss-logotype.svg')] bg-contain" href="https://tailwindcss.com"></a>
+            </div>
+            <p>React brand logo &copy; React team, <a class="underline" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+        </div>
+    </div>
+</footer>

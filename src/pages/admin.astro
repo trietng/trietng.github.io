@@ -1,8 +1,8 @@
 ---
 import DecapInitializer from '../components/admin/DecapInitializer';
-import SimpleLayout from '../layouts/SimpleLayout.astro';
+import SimpleLayout from '../layouts/base/SimpleLayout.astro';
 ---
 
 <SimpleLayout title="Admin">
-    <DecapInitializer client:only />
+    <DecapInitializer client:only="react"/>
 </SimpleLayout>
