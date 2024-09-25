@@ -1,0 +1,37 @@
+---
+import LangToggle from '../../components/LangToggle';
+import Header from '../../components/layout/Header.astro';
+import ThemeToggle from '../../components/ThemeToggle';
+import type { Lang } from '../../stores/lang';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script is:inline>
+			// Theme
+			// Toggle theme
+			document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+		</script>
+	</head>
+	</script>
+	<body class="bg-amber-100 dark:bg-neutral-800 text-amber-900 dark:text-white">
+		<Header>
+			<LangToggle client:load pathname={Astro.url.pathname} lang={Astro.currentLocale as Lang} />
+			<ThemeToggle client:load/>
+		</Header>
+		<slot />
+	</body>
+</html>

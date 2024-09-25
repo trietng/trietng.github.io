@@ -1,0 +1,63 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import NavBar from './NavBar';
+import { DEFAULT_LANG } from '../../stores/lang';
+import { config } from '../../config';
+
+const navItems = config.navItems.map((item) => ({
+    ...item,
+    localeHref: getRelativeLocaleUrl(Astro.currentLocale || DEFAULT_LANG, item.href),
+}));
+const currentIndex = navItems.findIndex((item) => (Astro.url.pathname.indexOf('/') === Astro.url.pathname.lastIndexOf('/') ? item.href : item.href + '/') === Astro.url.pathname);
+---
+<header class="top-0 w-full">
+    <div class="max-w-8xl mx-auto">
+        <div class="py-4 lg:px-8 mx-4 lg:mx-0">
+            <div class="relative flex justify-between items-center">
+                <a class="flex items-center gap-x-2" href={getRelativeLocaleUrl(Astro.currentLocale || DEFAULT_LANG, '/')} id="indexLink">
+                    <span class="font-bold text-2xl">trietng</span>
+                </a>
+                <NavBar client:load lang={Astro.currentLocale || DEFAULT_LANG} pathname={Astro.url.pathname} id="navBar" currentIndex={currentIndex} navItems={navItems}/>
+                <div class="flex items-center gap-x-4">
+                    <slot />
+                </div>
+                <button
+                    id="sideNavBar"
+                    type="button"
+                    class="inline-flex md:hidden items-center p-2 h-full aspect-square justify-center text-sm rounded-lg hover:bg-black/10 dark:hover:bg-white/10 focus:outline-none focus:ring-1 focus:ring-amber-900 dark:focus:ring-white">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-4 hidden fixed z-20 left-0 right-0 bg-white dark:bg-neutral-700" id="sideNavBarContent">
+                {navItems.map((item, index) => (
+                    <a
+                        class={
+                            "block font-bold p-4 hover:bg-white/10" +
+                            (index === currentIndex ? " bg-amber-900 text-white dark:bg-white/20" : "")
+                        }
+                        href={item.localeHref}
+                    >
+                        {item.name}
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    const mql = window.matchMedia('(min-width: 768px)');
+    const sideNavBar = document.getElementById('sideNavBar')!;
+    const sideNavBarContent = document.getElementById('sideNavBarContent')!;
+
+    mql.addEventListener('change', (e) => {
+        if (e.matches) {
+            sideNavBarContent.classList.add('hidden');
+        }
+    });
+    sideNavBar.addEventListener('click', () => {
+        sideNavBarContent.classList.toggle('hidden');
+    });
+</script>
