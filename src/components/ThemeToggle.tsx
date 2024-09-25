@@ -17,7 +17,7 @@ export default function ThemeToggle() {
         <Switch
             checked={theme === 'dark'}
             onChange={(checked) => $theme.set(checked ? 'dark' : 'light')}
-            className="group inline-flex items-center text-red-600 data-[checked]:text-yellow-300 hover:"
+            className="group inline-flex items-center rounded-full p-2 text-red-600 data-[checked]:text-yellow-300 hover:bg-black/10 dark:hover:bg-white/10"
         >
             {
             theme === 'dark' ? 

@@ -1,0 +1,15 @@
+---
+import SimpleLayout from '../layouts/base/SimpleLayout.astro';
+import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
+---
+<SimpleLayout title='not found' clazz='bg-amber-100 dark:bg-neutral-800 text-amber-900 dark:text-white'>
+    <main class="fixed inset-0 flex flex-col items-center justify-center gap-2">
+        <div class="text-2xl"><span class="font-bold">404:</span> Page not found</div>
+        <button class="bg-amber-900 hover:bg-amber-900/50 rounded-full text-lg py-2 w-32 text-white" onclick="window.location = '/'">
+            <PaperAirplaneIcon className="w-6 h-6 inline-block" />
+            Home
+        </button>
+    </main>
+    <style>
+    </style>
+</SimpleLayout>

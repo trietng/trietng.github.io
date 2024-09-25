@@ -8,9 +8,10 @@ const navItems = config.navItems.map((item) => ({
     ...item,
     localeHref: getRelativeLocaleUrl(Astro.currentLocale || DEFAULT_LANG, item.href),
 }));
-const currentIndex = navItems.findIndex((item) => (Astro.url.pathname.indexOf('/') === Astro.url.pathname.lastIndexOf('/') ? item.href : item.href + '/') === Astro.url.pathname);
+const currentIndex = navItems.findIndex((item) => (item.localeHref === Astro.url.pathname));
+console.log(currentIndex, Astro.url.pathname, navItems);
 ---
-<header class="top-0 w-full">
+<header class="sticky top-0 z-0 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-10 bg-transparent supports-backdrop-blur:bg-white/60">
     <div class="max-w-8xl mx-auto">
         <div class="py-4 lg:px-8 mx-4 lg:mx-0">
             <div class="relative flex justify-between items-center">
@@ -31,12 +32,12 @@ const currentIndex = navItems.findIndex((item) => (Astro.url.pathname.indexOf('/
                     </svg>
                 </button>
             </div>
-            <div class="mt-4 hidden fixed z-20 left-0 right-0 bg-white dark:bg-neutral-700" id="sideNavBarContent">
+            <div class="mt-4 hidden fixed z-20 left-0 right-0 bg-amber-50 dark:bg-neutral-700" id="sideNavBarContent">
                 {navItems.map((item, index) => (
                     <a
                         class={
-                            "block font-bold p-4 hover:bg-white/10" +
-                            (index === currentIndex ? " bg-amber-900 text-white dark:bg-white/20" : "")
+                            "block font-bold p-4 hover:bg-amber-900/10 dark:hover:bg-white/10" +
+                            (index === currentIndex ? " bg-amber-900 text-white dark:bg-white/20 hover:bg-amber-900 dark:hover:bg-white/20" : "")
                         }
                         href={item.localeHref}
                     >
@@ -48,10 +49,11 @@ const currentIndex = navItems.findIndex((item) => (Astro.url.pathname.indexOf('/
     </div>
 </header>
 <script>
+    // Declaration
     const mql = window.matchMedia('(min-width: 768px)');
     const sideNavBar = document.getElementById('sideNavBar')!;
     const sideNavBarContent = document.getElementById('sideNavBarContent')!;
-
+    // Event listeners
     mql.addEventListener('change', (e) => {
         if (e.matches) {
             sideNavBarContent.classList.add('hidden');
@@ -59,5 +61,10 @@ const currentIndex = navItems.findIndex((item) => (Astro.url.pathname.indexOf('/
     });
     sideNavBar.addEventListener('click', () => {
         sideNavBarContent.classList.toggle('hidden');
+    });
+    window.addEventListener('click', (e) => {
+        if (!sideNavBarContent.contains(e.target as Node) && !sideNavBar.contains(e.target as Node)) {
+            sideNavBarContent.classList.add('hidden');
+        }
     });
 </script>

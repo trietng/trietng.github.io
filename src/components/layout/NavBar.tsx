@@ -8,7 +8,7 @@ export default function NavBar(props: NavBarProps) {
             defaultIndex={props.currentIndex}
             id={props.id}
         >
-            <TabList className="flex gap-x-2 rounded-full p-2 bg-white dark:bg-white/[0.025]">
+            <TabList className="flex gap-x-2 rounded-full p-2 bg-white dark:bg-white/5">
                 {props.navItems.map((item) => 
                     <Tab
                         as="a"

@@ -1,8 +1,10 @@
 ---
 import LangToggle from '../../components/LangToggle';
 import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
 import ThemeToggle from '../../components/ThemeToggle';
 import type { Lang } from '../../stores/lang';
+import '../../styles/font.css';
 
 interface Props {
 	title: string;
@@ -27,11 +29,14 @@ const { title } = Astro.props;
 		</script>
 	</head>
 	</script>
-	<body class="bg-amber-100 dark:bg-neutral-800 text-amber-900 dark:text-white">
+	<body class="flex flex-col min-h-screen antialiased bg-amber-100 dark:bg-neutral-800 text-amber-900 dark:text-white">
 		<Header>
 			<LangToggle client:load pathname={Astro.url.pathname} lang={Astro.currentLocale as Lang} />
 			<ThemeToggle client:load/>
 		</Header>
-		<slot />
+		<main class='flex-grow my-4'>
+			<slot />
+		</main>
+		<Footer/>
 	</body>
 </html>
