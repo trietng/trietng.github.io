@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { DEFAULT_LANG, LangName, LangSet, type Lang } from "../stores/lang";
+import { DEFAULT_LANG, LangName, LangSet, type Lang } from "../models/lang";
 import { LangUtils } from "../utils/lang";
 
 interface LangToggleProps {
@@ -12,7 +12,7 @@ interface LangToggleProps {
 
 export default function LangToggle(props: LangToggleProps) {
     const [highlightSelected, setHighlightSelected] = useState(false);
-    
+
     return (
         <Menu>
             <MenuButton className="w-36 inline-flex justify-between items-center gap-2 rounded-md py-1.5 px-3 text-sm/6 font-semibold bg-amber-900/5 dark:bg-white/5 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25">
