@@ -10,6 +10,7 @@ export default defineConfig({
   i18n: {
     defaultLocale: "en",
     locales: ["en", "vi"],
+    routing: "manual"
   },
   integrations: [
     tailwind(),

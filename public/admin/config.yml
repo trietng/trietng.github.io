@@ -8,11 +8,27 @@ public_folder: /images
 slug:
   encoding: ascii
   clean_accents: true
+i18n:
+  structure: multiple_folders
+  locales: [en, vi]
+  default_locale: en
 collections:
-  - label: Khóa học
-    name: course
-    folder: src/pages/course
-    create: true
-    identifier_field: name
-    fields:
-      - {label: Layout, name: layout, widget: hidden, default: ../../layouts/CourseLayout.astro}
+  - label: Pages
+    name: pages
+    i18n: true
+    files:
+      - label: Home
+        name: home
+        file: src/pages/{{locale}}/index.md
+        create: false
+        i18n: true
+        fields:
+          - { label: Layout, name: layout, widget: hidden, default: ../../layouts/IndexLayout.astro, i18n: duplicate }
+          - label: Title
+            name: title
+            widget: object
+            i18n: duplicate
+            fields:
+              - { label: Greeting, name: greeting, widget: string, i18n: true }
+              - { label: Name, name: name, widget: string, i18n: true }
+          - { label: Summary, name: summary, widget: string, i18n: true }

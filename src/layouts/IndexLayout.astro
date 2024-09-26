@@ -1,6 +1,12 @@
 ---
 import Layout from './base/Layout.astro';
+
+const { frontmatter } = Astro.props;
 ---
 <Layout title="trietng">
-    Welcome to my website!
+    <div class="container px-4 md:px-8">
+        <div class="font-bold text-6xl break-words">{frontmatter.title.greeting}</div>
+        <div class="font-bold text-6xl break-words">{frontmatter.title.name}</div>
+        <div class="mt-4 text-lg break-words">{frontmatter.summary}</div>
+    </div>
 </Layout>
