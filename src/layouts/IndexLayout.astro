@@ -4,6 +4,7 @@ import Section from '../components/layout/Section.astro';
 import Layout from './base/Layout.astro';
 import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
 import CalendarDate from '../components/CalendarDate.astro';
+import { withPreposition } from '../models/preposition';
 
 const { frontmatter } = Astro.props;
 ---
@@ -17,7 +18,7 @@ const { frontmatter } = Astro.props;
             <div class="mt-4 flex justify-between items-center">
                 <div>
                     <div class="font-bold">{frontmatter.education.school}</div>
-                    <div>{frontmatter.education.degree} in {frontmatter.education.major}</div>
+                    <div>{withPreposition(frontmatter.education.degree)} {frontmatter.education.major}</div>
                     <div class="text-sm prose mr-4 mt-2" set:html={marked.parse(frontmatter.education.description)}></div>
                 </div>
                 <div class="w-32">
