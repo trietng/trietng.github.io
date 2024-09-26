@@ -20,8 +20,8 @@ collections:
       - label: Home
         name: home
         file: src/pages/{{locale}}/index.md
-        create: false
         i18n: true
+        format: markdown
         fields:
           - { label: Layout, name: layout, widget: hidden, default: ../../layouts/IndexLayout.astro, i18n: duplicate }
           - label: Title
@@ -32,3 +32,34 @@ collections:
               - { label: Greeting, name: greeting, widget: string, i18n: true }
               - { label: Name, name: name, widget: string, i18n: true }
           - { label: Summary, name: summary, widget: string, i18n: true }
+          - { label: Welcome, name: welcome, widget: markdown, i18n: true }
+          - label: Education
+            name: education
+            widget: object
+            i18n: duplicate
+            fields:
+              - { label: School, name: school, widget: string, i18n: true }
+              - { label: Degree, name: degree, widget: string, i18n: true }
+              - { label: Major, name: major, widget: string, i18n: true }
+              - { label: Description, name: description, widget: markdown, i18n: true }
+              - { label: Graduation date, name: graduationDate, widget: datetime, i18n: duplicate }
+          - label: Work experience
+            name: workExperience
+            widget: list
+            i18n: duplicate
+            fields:
+              - { label: Title, name: title, widget: string, i18n: duplicate }
+              - { label: Company, name: company, widget: string, i18n: duplicate }
+              - { label: Start date, name: startDate, widget: datetime, i18n: duplicate }
+              - { label: End date, name: endDate, widget: datetime, i18n: duplicate }
+              - { label: Description, name: description, widget: markdown, i18n: duplicate }
+          - label: Translations
+            name: translations
+            widget: object
+            i18n: duplicate
+            fields:
+              - { label: expectedGraduationDate, name: expectedGraduationDate, widget: string, i18n: true }
+              - { label: education, name: education, widget: string, i18n: true }
+              - { label: workExperience, name: workExperience, widget: string, i18n: true }
+              - { label: skills, name: skills, widget: string, i18n: true }
+              - { label: contact, name: contact, widget: string, i18n: true }

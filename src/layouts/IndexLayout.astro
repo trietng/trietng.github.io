@@ -1,12 +1,33 @@
 ---
+import { marked } from 'marked';
+import Section from '../components/layout/Section.astro';
 import Layout from './base/Layout.astro';
+import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
+import CalendarDate from '../components/CalendarDate.astro';
 
 const { frontmatter } = Astro.props;
 ---
 <Layout title="trietng">
-    <div class="container px-4 md:px-8">
+    <div class="px-4 md:px-8 text-justify">
         <div class="font-bold text-6xl break-words">{frontmatter.title.greeting}</div>
         <div class="font-bold text-6xl break-words">{frontmatter.title.name}</div>
         <div class="mt-4 text-lg break-words">{frontmatter.summary}</div>
+        <div class="mt-4 text-lg break-words prose" set:html={marked.parse(frontmatter.welcome)}></div>
+        <Section title={frontmatter.translations.education} clazz="mt-4">
+            <div class="mt-4 flex justify-between items-center">
+                <div>
+                    <div class="font-bold">{frontmatter.education.school}</div>
+                    <div>{frontmatter.education.degree} in {frontmatter.education.major}</div>
+                    <div class="text-sm prose mr-4 mt-2" set:html={marked.parse(frontmatter.education.description)}></div>
+                </div>
+                <div class="w-32">
+                    <div class="text-center mb-2">{frontmatter.translations.expectedGraduationDate}</div>
+                    <CalendarDate datetime={frontmatter.education.graduationDate} />
+                </div>
+            </div>
+        </Section>
+        <Section title={frontmatter.translations.workExperience} clazz='mt-4'>
+
+        </Section>
     </div>
 </Layout>
