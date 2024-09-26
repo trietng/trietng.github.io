@@ -7,7 +7,7 @@ interface Config {
 export const config: Config = {
     navItems: [
         { name: 'home', href: '/' },
-        { name: 'portfolio', href: '/portfolio' },
-        { name: 'blog', href: '/blog' },
+        // { name: 'portfolio', href: '/portfolio' },
+        // { name: 'blog', href: '/blog' },
     ]
 }

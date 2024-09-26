@@ -1,11 +1,13 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LANG } from "../../stores/lang";
 import Logo from "./Logo";
 
 const year = new Date().getFullYear();
 ---
 <footer class="pb-16">
-    <div class="max-w-7xl mx-4 sm:mx-6 md:mx-8 border-t pt-4 border-t-amber-900 dark:border-t-slate-50/10">
-        <Logo />
+    <div class="max-w-7xl mx-4 md:mx-8 border-t pt-4 border-t-amber-900 dark:border-t-slate-50/10">
+        <Logo href={getRelativeLocaleUrl(Astro.currentLocale || DEFAULT_LANG, '/')} />
         <div class="mt-4 text-sm">
             <p>Copyright &copy; trietng {year}</p>
             <p>Powered by</p>
