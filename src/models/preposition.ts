@@ -1,7 +1,7 @@
 export const PrepositionSet = <const> ['before', 'after'];
 export type Preposition = typeof PrepositionSet[number];
 const prepositions: Record<string, { preposition: Preposition, value: string }> = {
-    bachelor: { preposition: 'after', value: 'in' },
+    bachelor: { preposition: 'after', value: 'of' },
 };
 export function withPreposition(key: string): string {
     const p = prepositions[key.toLocaleLowerCase()];

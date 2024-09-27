@@ -1,34 +1,65 @@
 ---
 import { marked } from 'marked';
-import Section from '../components/layout/Section.astro';
+//import Section from '../components/layout/Section.astro';
+import Section from '../components/layout/Section';
 import Layout from './base/Layout.astro';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
 import CalendarDate from '../components/CalendarDate.astro';
 import { withPreposition } from '../models/preposition';
+import ContactBar from '../components/ContactBar.astro';
+import { getCollection } from 'astro:content';
+import { ArrowLongRightIcon } from '@heroicons/react/24/solid';
 
 const { frontmatter } = Astro.props;
+
+const workExperiences = await getCollection('work-experience').then(
+    (collection) => collection.sort((a: any, b: any) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime())
+);
 ---
 <Layout title="trietng">
-    <div class="px-4 md:px-8 text-justify">
-        <div class="font-bold text-6xl break-words">{frontmatter.title.greeting}</div>
-        <div class="font-bold text-6xl break-words">{frontmatter.title.name}</div>
-        <div class="mt-4 text-lg break-words">{frontmatter.summary}</div>
+    <div class="px-4 md:px-8 text-justify transition-colors">
+        <div class="md:flex md:justify-between md:items-center md:gap-x-8">
+            <div class="mb-4 md:mb-0">
+                <div class="font-bold text-6xl break-words">{frontmatter.title.greeting}</div>
+                <div class="font-bold text-6xl break-words">{frontmatter.title.name}</div>
+                <div class="mt-4 text-lg break-words">{frontmatter.summary}</div>
+            </div>
+            <ContactBar translations={frontmatter.translations} />
+        </div>
         <div class="mt-4 text-lg break-words prose" set:html={marked.parse(frontmatter.welcome)}></div>
-        <Section title={frontmatter.translations.education} clazz="mt-4">
-            <div class="mt-4 flex justify-between items-center">
+        <Section title={frontmatter.translations.education} className="mt-4" client:load>
+            <div class="mt-4 md:flex md:justify-between md:items-center">
                 <div>
                     <div class="font-bold">{frontmatter.education.school}</div>
                     <div>{withPreposition(frontmatter.education.degree)} {frontmatter.education.major}</div>
                     <div class="text-sm prose mr-4 mt-2" set:html={marked.parse(frontmatter.education.description)}></div>
                 </div>
-                <div class="w-32">
+                <div class="flex justify-between md:justify-center items-center gap-x-4 mt-4 md:mt-0">
                     <div class="text-center mb-2">{frontmatter.translations.expectedGraduationDate}</div>
-                    <CalendarDate datetime={frontmatter.education.graduationDate} />
+                    <div class="w-32">
+                        <CalendarDate datetime={frontmatter.education.graduationDate} translations={frontmatter.translations}/>
+                    </div>
                 </div>
             </div>
         </Section>
-        <Section title={frontmatter.translations.workExperience} clazz='mt-4'>
-
+        <Section title={frontmatter.translations.workExperience} className='mt-4' client:load>
+            {workExperiences.map((workExperience: any) => (
+                <div class="mt-4 md:flex md:justify-between md:items-center md:gap-x-4">
+                    <div>
+                        <div class="font-bold">{workExperience.data.title}</div>
+                        <div>{workExperience.data.company}</div>
+                        <div class="mt-2 prose prose-ul:list-disc prose-li:ml-12" set:html={marked.parse(workExperience.body)}></div>
+                    </div>
+                    <div class="flex justify-around md:justify-center items-center gap-x-4 mt-4 md:mt-0">
+                        <div class="w-32">
+                            <CalendarDate datetime={workExperience.data.startDate} translations={frontmatter.translations}/>
+                        </div>
+                        <ArrowLongRightIcon className="size-16"/>
+                        <div class="w-32">
+                            <CalendarDate datetime={''} translations={frontmatter.translations}/>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </Section>
     </div>
 </Layout>

@@ -42,17 +42,7 @@ collections:
               - { label: Degree, name: degree, widget: string, i18n: true }
               - { label: Major, name: major, widget: string, i18n: true }
               - { label: Description, name: description, widget: markdown, i18n: true }
-              - { label: Graduation date, name: graduationDate, widget: datetime, i18n: duplicate }
-          - label: Work experience
-            name: workExperience
-            widget: list
-            i18n: duplicate
-            fields:
-              - { label: Title, name: title, widget: string, i18n: duplicate }
-              - { label: Company, name: company, widget: string, i18n: duplicate }
-              - { label: Start date, name: startDate, widget: datetime, i18n: duplicate }
-              - { label: End date, name: endDate, widget: datetime, i18n: duplicate }
-              - { label: Description, name: description, widget: markdown, i18n: duplicate }
+              - { label: Graduation date, name: graduationDate, widget: datetime, time_format: false, i18n: duplicate }
           - label: Translations
             name: translations
             widget: object
@@ -62,4 +52,19 @@ collections:
               - { label: education, name: education, widget: string, i18n: true }
               - { label: workExperience, name: workExperience, widget: string, i18n: true }
               - { label: skills, name: skills, widget: string, i18n: true }
-              - { label: contact, name: contact, widget: string, i18n: true }
+              - { label: contactMe, name: contactMe, widget: string, i18n: true }
+              - { label: present, name: present, widget: string, i18n: true }
+  - label: Work experience
+    name: work-experience
+    folder: src/content/work-experience
+    icon: work
+    slug: '{{company}}-{{title}}-{{startDate}}'
+    summary: '{{company}} - {{title}}'
+    create: true
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Company, name: company, widget: string }
+      - { label: Start date, name: startDate, widget: datetime, time_format: false }
+      - { label: End date, name: endDate, widget: datetime, time_format: false, required: false }
+      - { label: Location, name: location, widget: string }
+      - { label: Description, name: body, widget: markdown }

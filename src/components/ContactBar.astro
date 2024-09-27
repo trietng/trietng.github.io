@@ -1,0 +1,23 @@
+---
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
+
+interface Props {
+    translations: Record<string, string>;
+}
+
+const { translations } = Astro.props;
+
+---
+<div class="bg-amber-50 dark:bg-white/20 rounded-md p-4 h-fit">
+    <div class="text-center mb-2">{translations.contactMe}</div>
+    <div class="flex justify-center gap-x-4">
+        <a class="size-12" href="tel:+84942392040">
+            <PhoneIcon />
+        </a>
+        <a class="size-12" href="mailto:trietnguyen0781@gmail.com">
+            <EnvelopeIcon />
+        </a>
+        <a class="h-12 w-[49px] bg-[url('/logo/github/github-mark.svg')] dark:bg-[url('/logo/github/github-mark-white.svg')] bg-contain" href="https://github.com/trietng"></a>
+        <a class="size-12 bg-[url('/logo/linkedin/In-Blue-96.png')] dark:bg-[url('/logo/linkedin/In-White-96.png')] bg-contain" href="https://www.linkedin.com/in/trietng/"></a>
+    </div>
+</div>
