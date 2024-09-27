@@ -42,17 +42,7 @@ collections:
               - { label: Degree, name: degree, widget: string, i18n: true }
               - { label: Major, name: major, widget: string, i18n: true }
               - { label: Description, name: description, widget: markdown, i18n: true }
-              - { label: Graduation date, name: graduationDate, widget: datetime, i18n: duplicate }
-          - label: Work experience
-            name: workExperience
-            widget: list
-            i18n: duplicate
-            fields:
-              - { label: Title, name: title, widget: string, i18n: duplicate }
-              - { label: Company, name: company, widget: string, i18n: duplicate }
-              - { label: Start date, name: startDate, widget: datetime, i18n: duplicate }
-              - { label: End date, name: endDate, widget: datetime, i18n: duplicate }
-              - { label: Description, name: description, widget: markdown, i18n: duplicate }
+              - { label: Graduation date, name: graduationDate, widget: datetime, time_format: false, i18n: duplicate }
           - label: Translations
             name: translations
             widget: object
@@ -62,4 +52,67 @@ collections:
               - { label: education, name: education, widget: string, i18n: true }
               - { label: workExperience, name: workExperience, widget: string, i18n: true }
               - { label: skills, name: skills, widget: string, i18n: true }
-              - { label: contact, name: contact, widget: string, i18n: true }
+              - { label: projects, name: projects, widget: string, i18n: true }
+              - { label: contactMe, name: contactMe, widget: string, i18n: true }
+              - { label: present, name: present, widget: string, i18n: true }
+  - label: Skills
+    name: skills
+    i18n: true
+    icon: star
+    files:
+      - label: Skills
+        name: skills
+        file: src/content/skills/skills.md
+        fields:
+          - label: Skills
+            name: skills
+            widget: list
+            fields:
+              - { label: Name, name: title, widget: string }
+              - { label: Description, name: body, widget: markdown }
+              - { label: Icon, name: icon, widget: image }
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - { label: Programming, value: programming }
+                  - { label: Language, value: language }
+                  - { label: Framework, value: framework }
+                  - { label: Library, value: library }
+                  - { label: Tool, value: tool }
+              - label: Level
+                name: level
+                widget: select
+                options:
+                  - { label: Beginner, value: beginner }
+                  - { label: Intermediate, value: intermediate }
+                  - { label: Advanced, value: advanced }
+  - label: Work experience
+    name: work-experience
+    folder: src/content/work-experience
+    icon: work
+    slug: '{{company}}-{{title}}-{{startDate}}'
+    summary: '{{company}} - {{title}}'
+    create: true
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Company, name: company, widget: string }
+      - { label: Start date, name: startDate, widget: datetime, time_format: false }
+      - { label: End date, name: endDate, widget: datetime, time_format: false, required: false }
+      - { label: Location, name: location, widget: string }
+      - { label: Description, name: body, widget: markdown }
+  - label: Projects
+    name: projects
+    folder: src/content/projects
+    slug: '{{name}}'
+    summary: '{{name}}'
+    icon: done_outline
+    create: true
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Description, name: body, widget: markdown }
+      - { label: Start date, name: startDate, widget: datetime, time_format: false }
+      - { label: End date, name: endDate, widget: datetime, time_format: false, required: false }
+      - { label: Repository, name: repository, widget: string, required: false }
+      - { label: Demo, name: demo, widget: string, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
