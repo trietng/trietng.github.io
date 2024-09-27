@@ -1,14 +1,12 @@
 ---
 import { marked } from 'marked';
 import { getCollection } from 'astro:content';
-import { Carousel } from "flowbite-react";
 import Section from '../components/layout/Section';
 import Layout from './base/Layout.astro';
 import ContactBar from '../components/ContactBar.astro';
 import Education from '../components/Education';
 import WorkExperience from '../components/WorkExperience';
 import { DEFAULT_LANG } from '../models/lang';
-import Skills from '../components/Skills';
 import FeaturedProjects from '../components/FeaturedProjects';
 
 const { frontmatter } = Astro.props;
