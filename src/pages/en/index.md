@@ -16,6 +16,7 @@ translations:
   education: Education
   workExperience: Work experience
   skills: Skills
+  projects: Projects
   contactMe: Contact me
   present: Present
 ---

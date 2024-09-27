@@ -16,6 +16,7 @@ translations:
   education: Học vấn
   workExperience: Kinh nghiệm làm việc
   skills: Kĩ năng
+  projects: Dự án
   contactMe: Liên hệ
   present: Hiện tại
 ---
