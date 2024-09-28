@@ -24,7 +24,7 @@ export default function WorkExperience(props: WorkExperienceProps) {
                         </div>
                         <ArrowLongRightIcon className="size-16"/>
                         <div className="w-32">
-                            <CalendarDate datetime={workExperience.data.startDate} translations={props.translations} lang={props.lang} />
+                            <CalendarDate datetime={workExperience.data.endDate} translations={props.translations} lang={props.lang} />
                         </div>
                     </div>
                 </div>
