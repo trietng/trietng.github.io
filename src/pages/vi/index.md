@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/IndexLayout.astro
 title:
-  greeting: Xin chào, tôi là
+  greeting: Xin chào, tôi tên là
   name: Nguyễn Đình Triết
 summary: Tôi là sinh viên năm 4 ngành Khoa học máy tính/lập trình viên ở Thành phố Hồ Chí Minh.
 welcome: Chào mừng bạn đến với website cá nhân của tôi! Đây là nơi tôi chia sẻ trải nghiệm của một lập trình viên và một số bài blog về các chủ đề Khoa học máy tính.
