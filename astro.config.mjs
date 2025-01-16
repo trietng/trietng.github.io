@@ -17,5 +17,10 @@ export default defineConfig({
     react({
       experimentalReactChildren: true,
     })
-  ]
+  ],
+  vite: {
+    assetsInclude: [
+      '**/*.enc',
+    ]
+  }
 });
