@@ -40,7 +40,7 @@ export function getStaticPaths() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     const key = params['key'];
-    const parts = window.location.pathname.split('/');
+    const parts = window.location.pathname.split('/').filter((part) => part !== '');
     const downloader = document.getElementById('downloader')! as HTMLAnchorElement;
     const status = document.getElementById('status')!;
     const statusIconInprogress = document.getElementById('status-icon-inprogress')!;
