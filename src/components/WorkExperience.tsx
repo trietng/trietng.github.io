@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import CalendarDate from "./CalendarDate";
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import { TbArrowNarrowRight } from "react-icons/tb";
 
 interface WorkExperienceProps {
     workExperiences: any[];
@@ -22,7 +22,7 @@ export default function WorkExperience(props: WorkExperienceProps) {
                         <div className="w-32">
                             <CalendarDate datetime={workExperience.data.startDate} translations={props.translations} lang={props.lang} />
                         </div>
-                        <ArrowLongRightIcon className="size-16"/>
+                        <TbArrowNarrowRight size="6rem"/>
                         <div className="w-32">
                             <CalendarDate datetime={workExperience.data.endDate} translations={props.translations} lang={props.lang} />
                         </div>
