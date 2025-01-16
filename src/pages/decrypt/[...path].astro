@@ -1,0 +1,119 @@
+---
+import { TbCircleCheckFilled, TbCircleXFilled } from 'react-icons/tb';
+import { Spinner } from '../../components/ui/spinner';
+import SimpleLayout from '../../layouts/base/SimpleLayout.astro';
+
+export function getStaticPaths() {
+    const files = import.meta.glob('../../../public/resources/encrypted/*.enc');
+    let paths = Object.keys(files).map((file) => {
+        let filename = file.split('/').pop();
+        if (!filename) {
+            return;
+        }
+        const parts = filename.match(/(.+)\.([^\.]+)\.enc/);
+        if (!parts || parts.length < 3) {
+            return;
+        }
+        const resource = parts[1];
+        const iv = parts[2];
+        return {
+            params: {
+                path: `${iv}/${resource}`
+            }
+        }
+    });
+    paths = paths.filter((path) => path);
+    return paths;
+}
+---
+<SimpleLayout title="trietng" clazz='bg-amber-100 dark:bg-neutral-800 text-amber-900 dark:text-white'>
+    <main class="fixed inset-0 flex flex-col items-center justify-center gap-2">
+        <a class="hidden" id="downloader"/>
+        <Spinner id="status-icon-inprogress"/>
+        <TbCircleCheckFilled id="status-icon-success" size="2.5rem" className="hidden !text-green-500"/>
+        <TbCircleXFilled id="status-icon-fail" size="2.5rem" className="hidden !text-red-500"/>
+        <div class="text-xl" id="status">Decrypting...</div>
+    </main>
+</SimpleLayout>
+<script>
+    // get querystring
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const key = params['key'];
+    const parts = window.location.pathname.split('/');
+    const downloader = document.getElementById('downloader')! as HTMLAnchorElement;
+    const status = document.getElementById('status')!;
+    const statusIconInprogress = document.getElementById('status-icon-inprogress')!;
+    const statusIconSuccess = document.getElementById('status-icon-success')!;
+    const statusIconFail = document.getElementById('status-icon-fail')!;
+    // if key is invalid
+    if (!key) {
+        statusIconInprogress.classList.add('hidden');
+        statusIconFail.classList.remove('hidden');
+        status.innerText = 'Invalid key';
+    }
+    // fetch the encrypted file
+    const iv = parts[parts.length - 2];
+    const filename = parts[parts.length - 1];
+    const path = `/resources/encrypted/${filename}.${iv}.enc`;
+    let resp;
+    try {
+        resp = await fetch(path);
+    } catch (e) {
+        statusIconInprogress.classList.add('hidden');
+        statusIconFail.classList.remove('hidden');
+        status.innerText = 'File not found';
+        throw e;
+    }
+    const data = await resp.arrayBuffer();
+    // decrypt the file
+    // create a crypto key
+    let cryptoKey;
+    try {
+        const t = key.match(/.{1,2}/g);
+        if (!t) {
+            throw new Error('Invalid key');
+        }
+        cryptoKey = await window.crypto.subtle.importKey(
+            'raw',
+            Uint8Array.from(t.map((byte) => parseInt(byte, 16))),
+            { name: 'AES-GCM' },
+            false,
+            ['decrypt']
+        );
+    } catch (e) {
+        statusIconInprogress.classList.add('hidden');
+        statusIconFail.classList.remove('hidden');
+        status.innerText = 'Invalid key';
+        throw e;
+    }
+    let output;
+    try {
+        const t = iv.match(/.{1,2}/g);
+        if (!t) {
+            throw new Error('Invalid IV');
+        }
+        output = await window.crypto.subtle.decrypt(
+            {
+                name: 'AES-GCM',
+                iv: Uint8Array.from(t.map((byte) => parseInt(byte, 16)))
+            },
+            cryptoKey,
+            data
+        );
+    } catch (e) {
+        statusIconInprogress.classList.add('hidden');
+        statusIconFail.classList.remove('hidden');
+        status.innerText = 'Decryption failed';
+        throw e;
+    }
+    // create a blob and download it
+    const blob = new Blob([output]);
+    const url = URL.createObjectURL(blob);
+    downloader.href = url;
+    downloader.download = filename;
+    statusIconInprogress.classList.add('hidden');
+    statusIconSuccess.classList.remove('hidden');
+    status.innerText = 'Decryption successful';
+    downloader.click();
+</script>

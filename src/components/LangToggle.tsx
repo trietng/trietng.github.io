@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { TbChevronDown } from "react-icons/tb";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { DEFAULT_LANG, LangName, LangSet, type Lang } from "../models/lang";
 import { LangUtils } from "../utils/lang";
@@ -20,7 +20,7 @@ export default function LangToggle(props: LangToggleProps) {
                     <img src={`/icons/flags/${props.lang}.svg`} alt={props.lang} className="w-4 h-4 rounded-full" />
                     {LangName[props.lang]}
                 </div>
-                <ChevronDownIcon className="size-4 fill-amber-900/60 dark:fill-white/60" />
+                <TbChevronDown size="1rem" color="rgb(120 53 15)" />
             </MenuButton>
             <MenuItems
                 transition

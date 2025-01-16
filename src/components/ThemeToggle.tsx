@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Switch } from "@headlessui/react";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import { TbMoonFilled, TbSunFilled } from "react-icons/tb";
 import { $theme } from "../stores/theme";
 import { useClientStore } from "../hooks/useClientStore";
 
@@ -21,10 +21,10 @@ export default function ThemeToggle() {
         >
             {
             theme === 'dark' ? 
-                <MoonIcon className="h-6 w-6"/> : (
+                <TbMoonFilled size="1.5rem"/> : (
             theme === 'light' ?
-                <SunIcon className="h-6 w-6"/> :
-                <div className="h-6 w-6"/>
+                <TbSunFilled size="1.5rem"/> :
+                <div className="size-6"/>
             )}
         </Switch>
     );
