@@ -1,5 +1,4 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import type { PropsWithChildren } from "react";
 import { TbChevronDown } from "react-icons/tb";
 
