@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Switch } from "@headlessui/react";
 import { TbMoonFilled, TbSunFilled } from "react-icons/tb";
 import { $theme } from "../stores/theme";
-import { useClientStore } from "../hooks/useClientStore";
+import { useClientStore } from "../hooks/use-client-store";
 
 export default function ThemeToggle() {
     const theme = useClientStore($theme);

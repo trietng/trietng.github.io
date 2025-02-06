@@ -1,4 +1,4 @@
-import type { NavItem } from "../models/navItem";
+import type { NavItem } from "../models/nav-item";
 
 interface Config {
     navItems: NavItem[];

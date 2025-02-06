@@ -1,5 +1,5 @@
 import { Tab, TabGroup, TabList } from "@headlessui/react";
-import type { NavBarProps } from "../../models/navBarProps";
+import type { NavBarProps } from "../../models/nav-bar-props";
 
 export default function NavBar(props: NavBarProps) {
     return (
