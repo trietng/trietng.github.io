@@ -16,7 +16,7 @@ export default function WorkExperience(props: WorkExperienceProps) {
                     <div>
                         <div className="font-bold">{workExperience.data.title}</div>
                         <div>{workExperience.data.company}</div>
-                        <div className="mt-2 prose prose-ul:list-disc prose-li:ml-12" dangerouslySetInnerHTML={{__html: marked.parse(workExperience.body)}}></div>
+                        <div className="mt-2 [&_ul]:list-disc [&_li]:ml-12" dangerouslySetInnerHTML={{__html: marked.parse(workExperience.body)}}></div>
                     </div>
                     <div className="flex justify-around md:justify-center items-center gap-x-4 mt-4 md:mt-0">
                         <div className="w-32">

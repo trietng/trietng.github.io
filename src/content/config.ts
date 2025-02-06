@@ -17,7 +17,7 @@ const projectCollection = defineCollection({
         name: z.string(),
         startDate: z.date(),
         endDate: z.date().or(z.string()),
-        repository: z.string(),
+        repository: z.array(z.string()),
         demo: z.string(),
         featured: z.boolean(),
     })

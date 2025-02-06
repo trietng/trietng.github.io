@@ -1,4 +1,4 @@
-import type { NavItem } from "./navItem";
+import type { NavItem } from "./nav-item";
 
 export interface NavBarProps {
     pathname: string;

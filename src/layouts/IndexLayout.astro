@@ -31,7 +31,7 @@ const projects = await getCollection('projects').then(
             </div>
             <ContactBar translations={frontmatter.translations} />
         </div>
-        <div class="mt-4 text-lg break-words prose" set:html={marked.parse(frontmatter.welcome)}></div>
+        <div class="mt-4 text-lg break-words" set:html={marked.parse(frontmatter.welcome)}></div>
         <Section title={frontmatter.translations.education} className="mt-4" client:only="react">
             <Education education={frontmatter.education} translations={frontmatter.translations} lang={Astro.currentLocale || DEFAULT_LANG} />
         </Section>

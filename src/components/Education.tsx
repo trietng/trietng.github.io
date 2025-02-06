@@ -14,7 +14,7 @@ export default function Education(props: EducationProps) {
             <div>
                 <div className="font-bold">{props.education.school}</div>
                 <div>{withPreposition(props.education.degree)} {props.education.major}</div>
-                <div className="text-sm prose mr-4 mt-2" dangerouslySetInnerHTML={{__html: marked.parse(props.education.description)}}></div>
+                <div className="text-sm mr-4 mt-2" dangerouslySetInnerHTML={{__html: marked.parse(props.education.description)}}></div>
             </div>
             <div className="flex justify-between md:justify-center items-center gap-x-4 mt-4 md:mt-0">
                 <div className="text-center mb-2">{props.translations.expectedGraduationDate}</div>

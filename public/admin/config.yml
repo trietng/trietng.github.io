@@ -113,6 +113,6 @@ collections:
       - { label: Description, name: body, widget: markdown }
       - { label: Start date, name: startDate, widget: datetime, time_format: false }
       - { label: End date, name: endDate, widget: datetime, time_format: false, required: false }
-      - { label: Repository, name: repository, widget: string, required: false }
+      - { label: Repository, name: repository, widget: list, required: false }
       - { label: Demo, name: demo, widget: string, required: false }
-      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: true, required: false }
