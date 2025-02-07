@@ -111,8 +111,14 @@ collections:
     fields:
       - { label: Name, name: name, widget: string }
       - { label: Description, name: body, widget: markdown }
-      - { label: Start date, name: startDate, widget: datetime, time_format: false }
-      - { label: End date, name: endDate, widget: datetime, time_format: false, required: false }
+      - label: Priority
+        name: priority
+        widget: select
+        options:
+          - { label: Low, value: low }
+          - { label: Medium, value: medium }
+          - { label: High, value: high }
+        default: medium
       - { label: Repository, name: repository, widget: list, required: false }
       - { label: Demo, name: demo, widget: string, required: false }
       - { label: Featured, name: featured, widget: boolean, default: true, required: false }

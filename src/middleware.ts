@@ -1,7 +1,7 @@
 import { defineMiddleware, sequence } from "astro:middleware";
 import { middleware } from "astro:i18n"; // function available with `manual` routing
 
-const customLogic = defineMiddleware(async (context, next) => {
+const customLogic = defineMiddleware(async (_context, next) => {
     return await next();;
 });
 

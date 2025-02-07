@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // import CMS from 'decap-cms-app';
-import jsYaml from 'js-yaml';
+// import jsYaml from 'js-yaml';
 
 
 /**
@@ -10,7 +10,7 @@ export default function DecapInitializer() {
     async function localConfig() {
         const response = await fetch('/admin/config-test.yml');
         const data = await response.text();
-        const config: any = jsYaml.load(data);
+        // const config: any = jsYaml.load(data);
         // CMS.init({ config: config });
     }
     
