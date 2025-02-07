@@ -30,7 +30,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
     return (
         <section className="embla">
-            <div className="text-lg font-semibold">{props.title}</div>
+            <div className="text-lg font-semibold text-start">{props.title}</div>
             {props.description && <div className='text-sm'>{props.description}</div>}
             <div className="embla__viewport mt-4" ref={emblaRef}>
                 <div className="embla__container mr-2">
