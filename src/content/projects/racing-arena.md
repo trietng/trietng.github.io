@@ -1,6 +1,6 @@
 ---
 name: Racing Arena
-priority: medium
+priority: high
 repository:
   - https://github.com/minhvip08/Racing-Arena
 demo: ''

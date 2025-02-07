@@ -8,6 +8,12 @@ import Education from '../components/Education';
 import WorkExperience from '../components/WorkExperience';
 import { DEFAULT_LANG } from '../models/lang';
 import FeaturedProjects from '../components/FeaturedProjects';
+import Skills from '../components/Skills';
+
+const skillsDataContent = await import('../content/skills/skills.md');
+const skillsData = skillsDataContent.frontmatter.skills;
+const primarySkillsData = skillsData.filter((skill: any) => skill.tier === 'primary');
+const secondarySkillsData = skillsData.filter((skill: any) => skill.tier === 'secondary');
 
 const { frontmatter } = Astro.props;
 
@@ -45,9 +51,9 @@ const locale = Astro.currentLocale || DEFAULT_LANG;
         <Section title={frontmatter.translations.workExperience} className='mt-4' client:only="react">
             <WorkExperience workExperiences={workExperiences} translations={frontmatter.translations} lang={locale} />
         </Section>
-        <!-- <Section title={frontmatter.translations.skills} className='mt-4' client:only="react">
-            <Skills client:only="react"/>
-        </Section> -->
+        <Section title={frontmatter.translations.skills} className='mt-4' client:only="react">
+            <Skills translations={frontmatter.translations} primarySkills={primarySkillsData} secondarySkills={secondarySkillsData} client:load/>
+        </Section>
         <Section title={frontmatter.translations.projects} className='mt-4' client:only="react">
             <!-- Temporary -->
             <FeaturedProjects projects={projects} />

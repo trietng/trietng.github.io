@@ -19,4 +19,9 @@ translations:
   projects: Projects
   contactMe: Contact me
   present: Present
+  primarySkills: Primary programming languages/frameworks
+  secondarySkills: Secondary programming languages/frameworks
+  primarySkillsDescription: Technologies I've utilized in professional and production-level software engineering projects.
+  secondarySkillsDescription: Technologies I've used for hobby and side projects.
 ---
+

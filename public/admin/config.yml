@@ -55,6 +55,10 @@ collections:
               - { label: projects, name: projects, widget: string, i18n: true }
               - { label: contactMe, name: contactMe, widget: string, i18n: true }
               - { label: present, name: present, widget: string, i18n: true }
+              - { label: primarySkills, name: primarySkills, widget: string, i18n: true }
+              - { label: secondarySkills, name: secondarySkills, widget: string, i18n: true }
+              - { label: primarySkillsDescription, name: primarySkillsDescription, widget: string, i18n: true }
+              - { label: secondarySkillsDescription, name: secondarySkillsDescription, widget: string, i18n: true }
   - label: Skills
     name: skills
     i18n: true
@@ -69,17 +73,18 @@ collections:
             widget: list
             fields:
               - { label: Name, name: title, widget: string }
-              - { label: Description, name: body, widget: markdown }
+              - { label: Description, name: body, widget: markdown, required: false }
               - { label: Icon, name: icon, widget: image }
               - label: Type
                 name: type
                 widget: select
                 options:
-                  - { label: Programming, value: programming }
                   - { label: Language, value: language }
                   - { label: Framework, value: framework }
                   - { label: Library, value: library }
                   - { label: Tool, value: tool }
+                  - { label: Database, value: database }
+                default: language
               - label: Level
                 name: level
                 widget: select
@@ -87,6 +92,14 @@ collections:
                   - { label: Beginner, value: beginner }
                   - { label: Intermediate, value: intermediate }
                   - { label: Advanced, value: advanced }
+                default: beginner
+              - label: Tier
+                name: tier
+                widget: select
+                options:
+                  - { label: Primary, value: primary }
+                  - { label: Secondary, value: secondary }
+                default: secondary
   - label: Work experience
     name: work-experience
     folder: src/content/work-experience
