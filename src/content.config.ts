@@ -24,5 +24,5 @@ const projectCollection = defineCollection({
 
 export const collections = {
     'work-experience': workExperienceCollection,
-    'projects': projectCollection,
+    'projects': projectCollection
 };
