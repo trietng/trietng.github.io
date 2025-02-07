@@ -15,9 +15,8 @@ const projectCollection = defineCollection({
     type: 'content',
     schema: z.object({
         name: z.string(),
-        startDate: z.date(),
-        endDate: z.date().or(z.string()),
         repository: z.array(z.string()),
+        priority: z.enum(['low', 'medium', 'high']),
         demo: z.string(),
         featured: z.boolean(),
     })

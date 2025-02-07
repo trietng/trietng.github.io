@@ -14,11 +14,18 @@ const { frontmatter } = Astro.props;
 const workExperiences = await getCollection('work-experience').then(
     (collection: any[]) => collection.sort((a: any, b: any) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime())
 );
+// Get featured projects
+const priorityNumericValues: Record<string, number> = {
+    low: 1,
+    medium: 2,
+    high: 3
+};
 const projects = await getCollection('projects').then(
     (collection: any[]) =>
-    collection.sort((a: any, b: any) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime())
+    collection.sort((a: any, b: any) => priorityNumericValues[b.data.priority] - priorityNumericValues[a.data.priority])
     .filter((project: any) => project.data.featured)
 );
+const locale = Astro.currentLocale || DEFAULT_LANG;
 
 ---
 <Layout title="trietng">
@@ -33,17 +40,17 @@ const projects = await getCollection('projects').then(
         </div>
         <div class="mt-4 text-lg break-words" set:html={marked.parse(frontmatter.welcome)}></div>
         <Section title={frontmatter.translations.education} className="mt-4" client:only="react">
-            <Education education={frontmatter.education} translations={frontmatter.translations} lang={Astro.currentLocale || DEFAULT_LANG} />
+            <Education education={frontmatter.education} translations={frontmatter.translations} lang={locale} />
         </Section>
         <Section title={frontmatter.translations.workExperience} className='mt-4' client:only="react">
-            <WorkExperience workExperiences={workExperiences} translations={frontmatter.translations} lang={Astro.currentLocale || DEFAULT_LANG} />
+            <WorkExperience workExperiences={workExperiences} translations={frontmatter.translations} lang={locale} />
         </Section>
         <!-- <Section title={frontmatter.translations.skills} className='mt-4' client:only="react">
             <Skills client:only="react"/>
         </Section> -->
         <Section title={frontmatter.translations.projects} className='mt-4' client:only="react">
             <!-- Temporary -->
-            <FeaturedProjects projects={projects} translations={frontmatter.translations} lang={Astro.currentLocale || DEFAULT_LANG} />
+            <FeaturedProjects projects={projects} />
         </Section>
     </div>
 </Layout>

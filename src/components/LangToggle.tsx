@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { TbChevronDown } from "react-icons/tb";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { DEFAULT_LANG, LangName, LangSet, type Lang } from "../models/lang";
+import { LangName, LangSet, type Lang } from "../models/lang";
 import { LangUtils } from "../utils/lang";
 
 interface LangToggleProps {
