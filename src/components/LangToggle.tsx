@@ -20,7 +20,7 @@ export default function LangToggle(props: LangToggleProps) {
                     <img src={`/icons/flags/${props.lang}.svg`} alt={props.lang} className="w-4 h-4 rounded-full" />
                     {LangName[props.lang]}
                 </div>
-                <TbChevronDown size="1rem" color="rgb(120 53 15)" />
+                <TbChevronDown size="1rem"  className="text-amber-900 dark:text-white"/>
             </MenuButton>
             <MenuItems
                 transition
